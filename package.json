@@ -1,20 +1,23 @@
 {
   "name": "gabby-query-protocol-lib",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "description": "Library Support for the Gabby Query Protocol",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [
     "dist"
   ],
+  "homepage": "https://terary.github.io/gabby-query-protocol-lib/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terary/gabby-query-protocol-lib"
+  },
   "scripts": {
     "test": "jest",
     "test:all": "npm run test -- --watchAll=false --verbose",
     "coverage": "npm run test -- --watchAll=false --verbose --coverage  --collectCoverageFrom=src/**/*.ts* ",
     "gabby:build": "rm -rf dist && NODE_ENV=production  tsc -p tsconfig.dist.json",
-    "gabby:pack": "npm run gabby:build && npm pack",
-    "gabby:scp": "scp -P 33233 *.tgz terarychambers.com:/www/terarychambers.com/web/public_html/gabby-query-protocol/",
-    "gabby:ship": "rm *.tgz && npm run gabby:pack && npm run gabby:scp"
+    "gabby:pack": "npm run gabby:build && npm pack"
   },
   "keywords": [
     "Gabby",
@@ -32,6 +35,8 @@
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
     "babel-jest": "^27.0.6",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.2.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -50,5 +55,10 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.differencewith": "^4.5.0",
     "lodash.pick": "^4.4.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
