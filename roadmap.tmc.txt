@@ -1,0 +1,4 @@
+
+- fromJson
+  should be  fromJson{subjectDictionary, predicateTree?}
+  no reason for two fromEmpty fromJson
