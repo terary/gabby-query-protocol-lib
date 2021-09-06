@@ -7,6 +7,11 @@
   "files": [
     "dist"
   ],
+  "homepage": "https://terary.github.io/gabby-query-protocol-lib/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terary/gabby-query-protocol-lib"
+  },
   "scripts": {
     "test": "jest",
     "test:all": "npm run test -- --watchAll=false --verbose",
