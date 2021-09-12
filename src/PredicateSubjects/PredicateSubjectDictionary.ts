@@ -9,7 +9,7 @@ import type {
 } from "./type";
 import type { TValueLabelList } from "../index";
 
-import { TPredicateProperties, TSupportedDatatype } from "../common";
+import { TPredicateProperties } from "../common";
 import { IPredicateSubjectDictionary } from "./IPredicateSubjectDictionary";
 import cloneDeep from "lodash.clonedeep";
 
