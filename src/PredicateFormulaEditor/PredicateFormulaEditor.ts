@@ -24,6 +24,10 @@ import {
 import { PredicateTreeError } from "../Predicates/PredicateTree/PredicateTreeError";
 import type { TPredicateTreeFactoryOptions } from "../Predicates";
 
+/**
+ * Example usage:
+ * [[include:ExamplePredicateFormulaEditor.html]]
+ */
 export class PredicateFormulaEditor
   implements IExportToJson<PredicateFormulaEditor, PredicateFormulaEditorJson>
 {
