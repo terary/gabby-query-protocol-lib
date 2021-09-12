@@ -12,7 +12,6 @@ import {
   isInteger,
   isNumeric,
   isString,
-  isValidJunctionPredicate,
 } from "./isFunctions";
 import { IValidator } from "./types";
 

@@ -11,7 +11,7 @@ import type {
   TPredicateNode,
   TSerializedPredicateTree,
 } from "../index";
-import { IExportToJson, IImportFromJson } from "../common";
+import { IExportToJson } from "../common";
 import type { PredicateFormulaEditorJson } from "./types";
 import { Validators } from "../validators";
 import type { TPredicateSubjectDictionaryJson } from "../PredicateSubjects";
@@ -147,7 +147,6 @@ export class PredicateFormulaEditor
     options?: TPredicateTreeFactoryOptions
   ): PredicateFormulaEditor {
     const hpm = new PredicateFormulaEditor();
-    const allErrorMessages: string[] = [];
     hpm._predicateSubjectDictionary = PredicateSubjectDictionaryFactory.fromJson(
       json.subjectDictionaryJson
     );
@@ -165,7 +164,6 @@ export class PredicateFormulaEditor
     options?: TPredicateTreeFactoryOptions
   ): PredicateFormulaEditor {
     const hpm = new PredicateFormulaEditor();
-    const allErrorMessages: string[] = [];
     hpm._predicateSubjectDictionary =
       PredicateSubjectDictionaryFactory.fromJson(subjectDictionaryJson);
 
