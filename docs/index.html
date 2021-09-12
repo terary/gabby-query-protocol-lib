@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>gabby-query-protocol-lib</title>
-	<meta name="description" content="Documentation for gabby-query-protocol-lib">
+	<title>Gabby Query Protocol - Projection - v1.0.0-beta.1</title>
+	<meta name="description" content="Documentation for Gabby Query Protocol - Projection - v1.0.0-beta.1">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<script async src="assets/js/search.js" id="search-script"></script>
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">gabby-query-protocol-lib</a>
+					<a href="index.html" class="title">Gabby Query Protocol - Projection - v1.0.0-beta.1</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -50,7 +50,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<h1>gabby-query-protocol-lib</h1>
+			<h1>Gabby Query Protocol - Projection - v1.0.0-beta.1</h1>
 		</div>
 	</div>
 </header>
@@ -58,12 +58,31 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<p><a href="https://terary.github.io/gabby-query-protocol-lib/">This Repo&#39;s docs</a></p>
 				<a href="#gabby-query-protocol-lib" id="gabby-query-protocol-lib" style="color: inherit; text-decoration: none;">
 					<h1>gabby-query-protocol-lib</h1>
 				</a>
+				<p><a href="https://codecov.io/gh/terary/gabby-query-protocol-lib"><img src="https://codecov.io/gh/terary/gabby-query-protocol-lib/branch/main/graph/badge.svg?token=3SBUXF77K9" alt="codecov"></a>
+					<a href="https://github.com/terary/gabby-query-protocol-lib"><img src="https://img.shields.io/badge/awesome-100%25-blue" alt="awesome"></a>
+					<a href="https://github.com/terary/gabby-query-protocol-lib"><img src="https://img.shields.io/badge/GQP-PredicateTree-blue" alt="Gabby Query Protocol"></a>
+					<a href="https://lgtm.com/projects/g/terary/gabby-query-protocol-lib/alerts/"><img src="https://img.shields.io/lgtm/alerts/g/terary/gabby-query-protocol-lib.svg?logo=lgtm&logoWidth=18" alt="Total alerts"></a>
+				<a href="https://lgtm.com/projects/g/terary/gabby-query-protocol-lib/context:javascript"><img src="https://img.shields.io/lgtm/grade/javascript/g/terary/gabby-query-protocol-lib.svg?logo=lgtm&logoWidth=18" alt="Language grade: JavaScript"></a></p>
 				<p>This package is the base library for Gabby Query Protocol.
-				It mostly focuses on the predicate formula aspects of GQP.</p>
+				It mostly focuses on the Predicate Formula aspects of GQP.</p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<p>Using npm:</p>
+				<p><code>$ npm install gabby-query-protocol-lib</code></p>
+				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+					<h3>Documentation</h3>
+				</a>
+				<p><a href="https://terary.github.io/gabby-query-protocol-lib/">This Repo&#39;s docs</a></p>
+				<p><a href="https://terary.github.io/gabby-query-protocol-www/">Project&#39;s docs</a></p>
+				<p><code>./examples/*</code> contains executable snippets found in documentation.</p>
+				<a href="#description" id="description" style="color: inherit; text-decoration: none;">
+					<h3>Description</h3>
+				</a>
+				<p>This is a sub-project the Gabby Query Protocol. The purpose of this project is to provide utilities for building Predicate Trees.</p>
 				<a href="#terminology" id="terminology" style="color: inherit; text-decoration: none;">
 					<h3>Terminology</h3>
 				</a>
@@ -76,8 +95,127 @@
 				<p><em>Predicate Formula</em> - coherent collection of predicate statements.</p>
 				<p><em>Predicate Tree</em> - The shape (coherent part) of the predicate statements.
 					Externally this is json representation of a <em>Directed Tree Graph</em>.
-					(I had better luck googling &#39;directed tree&#39;). Each node has 1 and only 1 parent, except root.
-				Any node will have 2 or more children (this is differs from traditional directed trees).</p>
+					(I had better luck googling &#39;directed tree&#39;). Each node exactly 1 parent, except root.
+				Any branch will have 2 or more children, AKA: no single child rule. This is differs from traditional directed trees.</p>
+				<p><img src="prdicate-tree.png?raw=true" alt="Predicate Tree" title="Predicate Tree"></p>
+				<a href="#main-classestypes" id="main-classestypes" style="color: inherit; text-decoration: none;">
+					<h3>Main Classes/Types</h3>
+				</a>
+				<ul>
+					<li>see: src/common/type.ts - for pseudo-atomic types. Too many to list here</li>
+					<li>See Repo documentation for further explanation.</li>
+					<li>Examples (./examples/*ts) have working examples.</li>
+				</ul>
+				<a href="#ipredicatetree" id="ipredicatetree" style="color: inherit; text-decoration: none;">
+					<h4>IPredicateTree</h4>
+				</a>
+				<pre><code class="language-ts"><span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">IPredicateTree</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #008000">// visitor pattern.</span>
+<span style="color: #000000">  </span><span style="color: #795E26">acceptVisitor</span><span style="color: #000000">(</span><span style="color: #001080">visitor</span><span style="color: #000000">: </span><span style="color: #267F99">IVisitor</span><span style="color: #000000">&lt;</span><span style="color: #267F99">TPredicateNode</span><span style="color: #000000">&gt;): </span><span style="color: #267F99">void</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">appendPredicate</span><span style="color: #000000">(</span><span style="color: #001080">parentId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">, </span><span style="color: #001080">predicate</span><span style="color: #000000">: </span><span style="color: #267F99">TPredicateNode</span><span style="color: #000000">): </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">getChildrenIds</span><span style="color: #000000">(</span><span style="color: #001080">predicateId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">string</span><span style="color: #000000">[];</span>
+
+<span style="color: #000000">  </span><span style="color: #008000">// returns TPredicateProperties | TPredicateJunctionPropsWithChildIds | null</span>
+<span style="color: #000000">  </span><span style="color: #795E26">getPredicateById</span><span style="color: #000000">(</span><span style="color: #001080">predicateId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">TPredicateNode</span><span style="color: #000000"> | </span><span style="color: #267F99">null</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">getPredicateByIdOrThrow</span><span style="color: #000000">(</span><span style="color: #001080">predicateId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">TPredicateNode</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">  </span><span style="color: #008000">// getPredicate - as TPredicateJunctionPropsWithChildIds  *preferred*</span>
+<span style="color: #000000">  </span><span style="color: #795E26">getPredicateJunctionPropsById</span><span style="color: #000000">(</span>
+<span style="color: #000000">    </span><span style="color: #001080">predicateId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span>
+<span style="color: #000000">  ): </span><span style="color: #267F99">TPredicateJunctionPropsWithChildIds</span><span style="color: #000000"> | </span><span style="color: #267F99">null</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">  </span><span style="color: #008000">// getPredicate - as TPredicateProperties  *preferred*</span>
+<span style="color: #000000">  </span><span style="color: #795E26">getPredicatePropsById</span><span style="color: #000000">(</span><span style="color: #001080">predicateId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">TPredicateProperties</span><span style="color: #000000"> | </span><span style="color: #267F99">null</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">getPredicatePropsByIdOrThrow</span><span style="color: #000000">(</span><span style="color: #001080">predicateId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">TPredicateProperties</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">getPredicateJunctionPropsByIdOrThrow</span><span style="color: #000000">(</span>
+<span style="color: #000000">    </span><span style="color: #001080">predicateId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span>
+<span style="color: #000000">  ): </span><span style="color: #267F99">TPredicateJunctionPropsWithChildIds</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">isBranch</span><span style="color: #000000">(</span><span style="color: #001080">predicateId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">boolean</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">removePredicate</span><span style="color: #000000">(</span><span style="color: #001080">predicateId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">void</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">  </span><span style="color: #008000">// for update purposes, alias coming soon.</span>
+<span style="color: #000000">  </span><span style="color: #795E26">replacePredicate</span><span style="color: #000000">(</span><span style="color: #001080">predicateId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">, </span><span style="color: #001080">predicate</span><span style="color: #000000">: </span><span style="color: #267F99">TPredicateNode</span><span style="color: #000000">): </span><span style="color: #267F99">void</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #001080">rootNodeId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">toJson</span><span style="color: #000000">(): </span><span style="color: #267F99">TSerializedPredicateTree</span><span style="color: #000000">;</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#leaf-predicate-tpredicateproperties" id="leaf-predicate-tpredicateproperties" style="color: inherit; text-decoration: none;">
+					<h4>Leaf Predicate (TPredicateProperties)</h4>
+				</a>
+				<pre><code class="language-ts"><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">TPredicateProperties</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">  </span><span style="color: #001080">subjectId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #001080">operator</span><span style="color: #000000">: </span><span style="color: #267F99">TPredicateOperator</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #001080">value</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000"> | </span><span style="color: #267F99">string</span><span style="color: #000000">; </span><span style="color: #008000">// this is the instance of Predicate, the type of this is</span>
+<span style="color: #000000">  </span><span style="color: #008000">// determined by the subject definition {subjectId, validOps, datatype...}</span>
+<span style="color: #000000">};</span>
+</code></pre>
+				<a href="#branch-predicate-tpredicatepropertiesjunction" id="branch-predicate-tpredicatepropertiesjunction" style="color: inherit; text-decoration: none;">
+					<h4>Branch Predicate (TPredicatePropertiesJunction)</h4>
+				</a>
+				<pre><code class="language-ts"><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">TPredicatePropertiesJunction</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">  </span><span style="color: #001080">operator</span><span style="color: #000000">: </span><span style="color: #267F99">TPredicateJunctionOperator</span><span style="color: #000000">;</span>
+<span style="color: #000000">};</span>
+</code></pre>
+				<a href="#ipredicatesubjectdictionary" id="ipredicatesubjectdictionary" style="color: inherit; text-decoration: none;">
+					<h4>IPredicateSubjectDictionary</h4>
+				</a>
+				<p>Should only be readOnly operators used for default values and validation.</p>
+				<pre><code class="language-ts"><span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">IPredicateSubjectDictionary</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">IExportToJson</span><span style="color: #000000">&lt;</span><span style="color: #267F99">IPredicateSubjectDictionary</span><span style="color: #000000">, </span><span style="color: #267F99">TPredicateSubjectDictionaryJson</span><span style="color: #000000">&gt; {</span>
+<span style="color: #000000">  </span><span style="color: #795E26">getOptionsList</span><span style="color: #000000">(</span><span style="color: #001080">subjectId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">TPredicateSubjectOptionsList</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #008000">// getAllSubjects(): TPredicateSubjectDictionary; // internal dictionary</span>
+<span style="color: #000000">  </span><span style="color: #795E26">getSubjectIds</span><span style="color: #000000">(): </span><span style="color: #267F99">string</span><span style="color: #000000">[];</span>
+<span style="color: #000000">  </span><span style="color: #795E26">getSubject</span><span style="color: #000000">(</span><span style="color: #001080">subjectId</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">TPredicateSubjectWithId</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #008000">//   getSubjectOrThrow(subjectId: string): TPredicateSubjectWithId;</span>
+<span style="color: #000000">  </span><span style="color: #795E26">getDefaultSubject</span><span style="color: #000000">(): </span><span style="color: #267F99">TPredicateSubjectWithId</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #795E26">makeEmptyPredicate</span><span style="color: #000000">(): </span><span style="color: #267F99">TPredicateProperties</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #795E26">getColumns</span><span style="color: #000000">(): </span><span style="color: #267F99">TPredicateSubjectAsColumnDefinition</span><span style="color: #000000">[];</span>
+<span style="color: #000000">  </span><span style="color: #795E26">toJson</span><span style="color: #000000">(): </span><span style="color: #267F99">TPredicateSubjectDictionaryJson</span><span style="color: #000000">;</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+					<h3>Example</h3>
+				</a>
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">PredicateFormulaEditorFactory</span><span style="color: #000000">, </span><span style="color: #001080">TPredicateProperties</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;../src&quot;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">EXAMPLE_JSON_BLUE_SKIES</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;../src&quot;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">predicateTreeJson</span><span style="color: #000000"> } = </span><span style="color: #0070C1">EXAMPLE_JSON_BLUE_SKIES</span><span style="color: #000000">;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #001080">predicateSubjectsDictionaryJson</span><span style="color: #000000">: </span><span style="color: #0070C1">subjectDictionaryJson</span><span style="color: #000000"> } =</span>
+<span style="color: #000000">  </span><span style="color: #0070C1">EXAMPLE_JSON_BLUE_SKIES</span><span style="color: #000000">;</span>
+
+<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">predicateFormula</span><span style="color: #000000"> = </span><span style="color: #001080">PredicateFormulaEditorFactory</span><span style="color: #000000">.</span><span style="color: #795E26">fromJson</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">predicateTreeJson:</span><span style="color: #000000"> </span><span style="color: #001080">predicateTreeJson</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #008000">// predicateTreeJson is optional.</span>
+<span style="color: #000000">  </span><span style="color: #008000">// if undefined tree will be empty (like new document, start from scratch)</span>
+
+<span style="color: #000000">  </span><span style="color: #001080">subjectDictionaryJson:</span><span style="color: #000000"> </span><span style="color: #001080">subjectDictionaryJson</span><span style="color: #000000">,</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">newPredicate</span><span style="color: #000000">: </span><span style="color: #267F99">TPredicateProperties</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">  </span><span style="color: #001080">operator:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$eq&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">subjectId:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;firstName&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;Barney&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">};</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">newPredicateId</span><span style="color: #000000"> = </span><span style="color: #001080">predicateFormula</span><span style="color: #000000">.</span><span style="color: #795E26">predicatesAppend</span><span style="color: #000000">(</span>
+<span style="color: #000000">  </span><span style="color: #001080">predicateFormula</span><span style="color: #000000">.</span><span style="color: #001080">rootNodeId</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">newPredicate</span>
+<span style="color: #000000">);</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">toBeUpdatedPredicate</span><span style="color: #000000"> = </span><span style="color: #001080">predicateFormula</span><span style="color: #000000">.</span><span style="color: #795E26">predicatesGetPropertiesById</span><span style="color: #000000">(</span><span style="color: #001080">newPredicateId</span><span style="color: #000000">);</span>
+<span style="color: #001080">toBeUpdatedPredicate</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000"> = </span><span style="color: #A31515">&quot;Betty&quot;</span><span style="color: #000000">;</span>
+
+<span style="color: #001080">predicateFormula</span><span style="color: #000000">.</span><span style="color: #795E26">predicatesReplace</span><span style="color: #000000">(</span><span style="color: #001080">newPredicateId</span><span style="color: #000000">, </span><span style="color: #001080">toBeUpdatedPredicate</span><span style="color: #000000">);</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #267F99">JSON</span><span style="color: #000000">.</span><span style="color: #795E26">stringify</span><span style="color: #000000">(</span><span style="color: #001080">predicateFormula</span><span style="color: #000000">.</span><span style="color: #795E26">toJson</span><span style="color: #000000">(), </span><span style="color: #0000FF">null</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">));</span>
+</code></pre>
 				<a href="#npm-run" id="npm-run" style="color: inherit; text-decoration: none;">
 					<h3>npm run</h3>
 				</a>

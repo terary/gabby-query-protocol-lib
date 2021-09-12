@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PredicateFormulaEditor | gabby-query-protocol-lib</title>
-	<meta name="description" content="Documentation for gabby-query-protocol-lib">
+	<title>PredicateFormulaEditor | Gabby Query Protocol - Projection - v1.0.0-beta.1</title>
+	<meta name="description" content="Documentation for Gabby Query Protocol - Projection - v1.0.0-beta.1">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 	<script async src="../assets/js/search.js" id="search-script"></script>
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">gabby-query-protocol-lib</a>
+					<a href="../index.html" class="title">Gabby Query Protocol - Projection - v1.0.0-beta.1</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -52,7 +52,7 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../modules.html">gabby-query-protocol-lib</a>
+					<a href="../modules.html">Gabby Query Protocol - Projection - v1.0.0-beta.1</a>
 				</li>
 				<li>
 					<a href="PredicateFormulaEditor.html">PredicateFormulaEditor</a>
@@ -65,6 +65,46 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Example usage:</p>
+						<pre><code>
+import { PredicateFormulaEditorFactory, TPredicateProperties } from "../src";
+import { EXAMPLE_JSON_BLUE_SKIES } from "../src";
+
+const { predicateTreeJson } = EXAMPLE_JSON_BLUE_SKIES;
+const { predicateSubjectsDictionaryJson: subjectDictionaryJson } =
+  EXAMPLE_JSON_BLUE_SKIES;
+
+export const predicateFormula = PredicateFormulaEditorFactory.fromJson({
+  predicateTreeJson: predicateTreeJson,
+  // predicateTreeJson is optional.
+  // if undefined tree will be empty (like new document, start from scratch)
+
+  subjectDictionaryJson: subjectDictionaryJson,
+});
+
+const newPredicate: TPredicateProperties = {
+  operator: "$eq",
+  subjectId: "firstName",
+  value: "Barney",
+};
+
+const newPredicateId = predicateFormula.predicatesAppend(
+  predicateFormula.rootNodeId,
+  newPredicate
+);
+
+const toBeUpdatedPredicate = predicateFormula.predicatesGetPropertiesById(newPredicateId);
+toBeUpdatedPredicate.value = "Betty";
+
+predicateFormula.predicatesReplace(newPredicateId, toBeUpdatedPredicate);
+console.log(JSON.stringify(predicateFormula.toJson(), null, 2));
+</code></pre>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -143,7 +183,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L33">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L37">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -165,7 +205,7 @@
 					<div class="tsd-signature tsd-kind-icon">_predicate<wbr>Subject<wbr>Dictionary<span class="tsd-signature-symbol">:</span> <a href="../interfaces/IPredicateSubjectDictionary.html" class="tsd-signature-type" data-tsd-kind="Interface">IPredicateSubjectDictionary</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L31">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L35">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -175,7 +215,7 @@
 					<div class="tsd-signature tsd-kind-icon">_predicate<wbr>Tree<span class="tsd-signature-symbol">:</span> <a href="../interfaces/IPredicateTree.html" class="tsd-signature-type" data-tsd-kind="Interface">IPredicateTree</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L30">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L34">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -192,7 +232,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L41">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L45">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:45</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/IPredicateTree.html" class="tsd-signature-type" data-tsd-kind="Interface">IPredicateTree</a></h4>
@@ -209,7 +249,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L38">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L42">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -226,7 +266,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L45">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L49">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:49</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/IPredicateSubjectDictionary.html" class="tsd-signature-type" data-tsd-kind="Interface">IPredicateSubjectDictionary</a></h4>
@@ -246,7 +286,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L134">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L138">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:138</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../modules.html#TPredicateProperties" class="tsd-signature-type" data-tsd-kind="Type alias">TPredicateProperties</a></h4>
@@ -263,7 +303,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L50">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L54">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:54</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -286,7 +326,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L54">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L58">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -312,7 +352,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L73">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L77">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:77</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -335,7 +375,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L77">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L81">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:81</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -358,7 +398,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L81">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L85">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:85</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -381,7 +421,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L85">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L89">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:89</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -404,7 +444,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L90">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L94">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -427,7 +467,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L94">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L98">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:98</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -450,7 +490,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L99">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L103">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:103</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -476,7 +516,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L108">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:108</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L112">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:112</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -499,7 +539,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L130">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:130</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L134">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:134</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../modules.html#TPredicateSubjectAsColumnDefinition" class="tsd-signature-type" data-tsd-kind="Type alias">TPredicateSubjectAsColumnDefinition</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -516,7 +556,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L123">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L127">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:127</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -533,7 +573,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L127">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L131">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:131</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -556,7 +596,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L113">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L117">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:117</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../modules.html#TPredicateSubjectWithId" class="tsd-signature-type" data-tsd-kind="Type alias">TPredicateSubjectWithId</a></h4>
@@ -573,7 +613,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L119">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L123">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:123</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -597,7 +637,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of IExportToJson.toJson</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L138">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L142">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:142</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../modules.html#PredicateFormulaEditorJson" class="tsd-signature-type" data-tsd-kind="Type alias">PredicateFormulaEditorJson</a></h4>
@@ -614,7 +654,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L163">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L166">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:166</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -640,7 +680,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/90325a5/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L145">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/terary/gabby-query-protocol-lib/blob/8556213/src/PredicateFormulaEditor/PredicateFormulaEditor.ts#L149">src/PredicateFormulaEditor/PredicateFormulaEditor.ts:149</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
