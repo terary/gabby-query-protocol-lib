@@ -46,10 +46,8 @@ import type {
 import { IDirectedTreeGraph } from "../DirectedTreeGraph/IDirectedTreeGraph";
 import { IPredicateTree } from "./IPredicateTree";
 import * as helpers from "./helpers";
-import { TPredicateJunctionOperator } from "../../PredicateSubjects";
 
 const junctionAND = { operator: "$and" } as TPredicatePropertiesJunction;
-const junctionOR = { operator: "$or" } as TPredicatePropertiesJunction;
 
 export default class PredicateTree implements IPredicateTree {
   private _tree: IDirectedTreeGraph<TPredicateNode>;

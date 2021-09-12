@@ -25,7 +25,6 @@ import {
   TreeNodeRef,
   TreeNode,
   IIncrementor,
-  SerializedTreeNode,
   SerializedTree,
 } from "./types";
 
@@ -77,7 +76,6 @@ export default class DirectedTreeGraph<T> implements IDirectedTreeGraph<T> {
     const node = this._getNodeByIdRef(nodeId);
 
     if (!!node) {
-      const children = node.children;
       if (visitor.nodeType === "all") {
         visitor.visit(node.parentId, node.nodeId, node.payload);
       } else if (visitor.nodeType === "branch" && this.isBranchNode(nodeId)) {

@@ -21,17 +21,17 @@ import type { TSerializedPredicateTree, IVisitor } from "./Predicates";
 import type { IPredicateTree } from "./Predicates/PredicateTree";
 
 import type {
-  IPredicateSubjectDictionary,
+  TOperatorOptions,
   TPredicateJunctionOperator,
-  TPredicateSubjectAsColumnDefinition,
-  TPredicateSubjectDictionaryJson,
   TPredicateOperator,
-  TPredicateSubjectWithId,
+  TPredicateSubjectAsColumnDefinition,
+  IPredicateSubjectDictionary,
+  TPredicateSubjectDictionaryJson,
+  TPredicateSubjectOptionsList,
   TPredicateSubjectProperties,
   TPredicateSubjectPropertiesJson,
-  TPredicateSubjectOptionsList,
+  TPredicateSubjectWithId,
   TValidOperatorList,
-  TOperatorOptions,
 } from "./PredicateSubjects/index";
 
 import type {

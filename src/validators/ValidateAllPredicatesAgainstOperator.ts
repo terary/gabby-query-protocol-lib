@@ -1,14 +1,8 @@
 import { IValidator } from "./types";
-import { TreeVisitors } from "../Predicates/TreeVisitors";
-import type {
-  IPredicateTree,
-  TPredicateNodeJson,
-  IPredicateSubjectDictionary,
-} from "../index";
+import type { IPredicateSubjectDictionary } from "../index";
 import { TSerializedPredicateTree } from "../Predicates";
 import { isValidJunctionPredicate } from "./isFunctions";
 import { ValidatePredicateAgainstOperator } from "./ValidatePredicateAgainstOperator";
-//import { ValidatePredicateAgainstOperator } from "./ValidatePredicateAgainstOperator";
 
 export const ValidateAllPredicatesAgainstOperator: IValidator = (
   predicateTreeJson: TSerializedPredicateTree,

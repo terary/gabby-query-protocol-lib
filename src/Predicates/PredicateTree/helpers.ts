@@ -2,7 +2,6 @@ import pick from "lodash.pick";
 import { DirectedTreeError } from "../DirectedTreeGraph";
 import { CONSTS } from "../..";
 import type { TPredicateProperties } from "../../index";
-import cloneDeep from "lodash.clonedeep";
 
 // today this should be <payloadJson,payload>
 export const objectToQueryNode = <QueryNode>(jsonPayload: any) => {
