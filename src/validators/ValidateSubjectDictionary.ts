@@ -1,11 +1,10 @@
 import { TPredicateSubjectDictionaryJson } from "../PredicateSubjects";
-import { IValidator } from "./types";
+import { TValidatorResponse } from "./types";
 import { ValidatePredicateSubject } from "./ValidatePredicateSubject";
 
-//const x:  TPredicateSubjectDictionaryJson
-export const ValidateSubjectDictionary: IValidator = (
+export const ValidateSubjectDictionary = (
   subjects: TPredicateSubjectDictionaryJson
-) => {
+): TValidatorResponse => {
   const allErrors: string[] = [];
   if (Object.keys(subjects || {}).length === 0) {
     allErrors.push("Subject Dictionary has no subjects");

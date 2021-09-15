@@ -1,13 +1,13 @@
-import { IValidator } from "./types";
+import { IValidator, TValidatorResponse } from "./types";
 import type { IPredicateSubjectDictionary } from "../index";
 import { TSerializedPredicateTree } from "../Predicates";
 import { isValidJunctionPredicate } from "./isFunctions";
 import { ValidatePredicateAgainstOperator } from "./ValidatePredicateAgainstOperator";
 
-export const ValidateAllPredicatesAgainstOperator: IValidator = (
+export const ValidateAllPredicatesAgainstOperator = (
   predicateTreeJson: TSerializedPredicateTree,
   subjectDictionary: IPredicateSubjectDictionary
-) => {
+): TValidatorResponse => {
   const allErrorMessages: string[] = [];
 
   Object.entries(predicateTreeJson).forEach(([nodeId, predicateNode]) => {
