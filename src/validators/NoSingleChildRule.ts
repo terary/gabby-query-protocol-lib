@@ -1,12 +1,8 @@
-import { IValidator } from "./types";
+import { TValidatorResponse } from "./types";
 import { PredicateTree } from "../index";
 import { TreeVisitors } from "../Predicates/TreeVisitors";
 
-export const myValidator: IValidator = (x: any, y: any) => {
-  return { hasError: false, errorMessages: [] };
-};
-
-export const NoSingleChildRule = (pTree: PredicateTree) => {
+export const NoSingleChildRule = (pTree: PredicateTree): TValidatorResponse => {
   const branchIdVisitor = new TreeVisitors.PredicateIdsBranches();
   pTree.acceptVisitor(branchIdVisitor);
 

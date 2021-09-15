@@ -13,9 +13,16 @@ import {
   isNumeric,
   isString,
 } from "./isFunctions";
-import { IValidator } from "./types";
+import { IValidator, TValidatorResponse } from "./types";
 
-export const ValidatePredicateAgainstOperator: IValidator = (
+interface IValidatePredicateAgainstOperator {
+  (
+    predicateJson: TPredicateNodeJson,
+    subjects: IPredicateSubjectDictionary
+  ): TValidatorResponse;
+}
+
+export const ValidatePredicateAgainstOperator: IValidatePredicateAgainstOperator = (
   predicateJson: TPredicateNodeJson,
   subjects: IPredicateSubjectDictionary
 ) => {
