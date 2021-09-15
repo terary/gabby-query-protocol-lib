@@ -1,4 +1,4 @@
-import { IValidator, TValidatorResponse } from "./types";
+import { TValidatorResponse } from "./types";
 import type { IPredicateSubjectDictionary } from "../index";
 import { TSerializedPredicateTree } from "../Predicates";
 import { isValidJunctionPredicate } from "./isFunctions";
