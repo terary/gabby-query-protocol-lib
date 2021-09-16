@@ -8,7 +8,6 @@ export type TPredicateTreeFactoryOptions = {
   newRootId?: string;
 };
 
-// TODO - *tmc* - This should be using namespace
 export const PredicateTreeFactory = {
   fromEmpty: (
     subjectDictionary: IPredicateSubjectDictionary,
