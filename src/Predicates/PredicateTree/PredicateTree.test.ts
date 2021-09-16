@@ -12,7 +12,6 @@ import { simplePredicates } from "./test-helpers";
 import predicateTreeJson from "../../test-case-files/predicate-tree-blue-skies.json";
 import { TSerializedPredicateTree } from "..";
 import { TreeVisitors } from "../TreeVisitors";
-// import { VisitorOperatorCounter } from "../TreeVisitors/VisitorOperatorCounter";
 import { PredicateTreeError } from "./PredicateTreeError";
 
 const VisitorOperatorCounter = TreeVisitors.OperatorCounter;

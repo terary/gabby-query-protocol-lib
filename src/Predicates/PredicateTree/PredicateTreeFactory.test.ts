@@ -5,9 +5,6 @@ import subjectDictionaryJson from "../../test-case-files/harden-cases/subject-di
 import { TSerializedPredicateTree } from "..";
 import { TPredicateSubjectDictionaryJson } from "../../index";
 import { PredicateSubjectDictionaryFactory } from "../../PredicateSubjects";
-import { VisitorTreeToJson } from "../DirectedTreeGraph/VisitorTreeToJson";
-import { format } from "prettier";
-import { isMapIterator } from "util/types";
 import { assert } from "console";
 
 const predicateTreeJson = cloneDeep(

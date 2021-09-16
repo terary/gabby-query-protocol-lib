@@ -3,10 +3,10 @@
  *
  */
 import type { TPredicateNode } from "../../index";
+import type { IVisitorPredicateTree } from "../PredicateTree";
+import type { VisitorNodeType } from "../index";
 
-import type { VisitorNodeType, IVisitor } from "../index";
-
-export abstract class PredicateIdsAbstract implements IVisitor<TPredicateNode> {
+export abstract class PredicateIdsAbstract implements IVisitorPredicateTree {
   protected _predicateIds: string[] = [];
   protected _nodeType: VisitorNodeType;
   constructor() {

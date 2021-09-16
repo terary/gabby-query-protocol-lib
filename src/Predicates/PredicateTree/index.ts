@@ -3,7 +3,7 @@ import PredicateTree from "./PredicateTree";
 import { PredicateTreeFactory } from "./PredicateTreeFactory";
 import type { IPredicateTree } from "./IPredicateTree";
 import type { TPredicateTreeFactoryOptions } from "./PredicateTreeFactory";
-
-export type { IPredicateTree, TPredicateTreeFactoryOptions };
+import type { IVisitorPredicateTree } from "./IVisitorPredicateTree";
+export type { IPredicateTree, TPredicateTreeFactoryOptions, IVisitorPredicateTree };
 
 export { PredicateTree, PredicateTreeFactory };
