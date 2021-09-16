@@ -16,7 +16,11 @@ import {
   PredicateSubjectDictionary,
   PredicateSubjectDictionaryFactory,
 } from "./PredicateSubjects";
-import type { TSerializedPredicateTree, IVisitorPredicateTree } from "./Predicates";
+import type {
+  TSerializedPredicateTree,
+  IVisitorPredicateTree,
+  IVisitor,
+} from "./Predicates";
 
 import type { IPredicateTree } from "./Predicates/PredicateTree";
 import { Validators } from "./validators";
@@ -61,6 +65,7 @@ export {
 export type {
   IPredicateSubjectDictionary,
   IPredicateTree, // to be used instead of PredicateTree
+  IVisitor,
   IVisitorPredicateTree,
   TOperatorOptions,
   PredicateFormulaEditorJson,

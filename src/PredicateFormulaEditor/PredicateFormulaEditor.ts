@@ -22,7 +22,7 @@ import {
   PredicateTreeFactory,
 } from "../index";
 import { PredicateTreeError } from "../Predicates/PredicateTree/PredicateTreeError";
-import type { TPredicateTreeFactoryOptions } from "../Predicates";
+import type { IVisitor, TPredicateTreeFactoryOptions } from "../Predicates";
 
 export class PredicateFormulaEditor
   implements IExportToJson<PredicateFormulaEditor, PredicateFormulaEditorJson>
@@ -47,7 +47,10 @@ export class PredicateFormulaEditor
     return this._predicateSubjectDictionary;
   }
 
-  predicatesAcceptVisitor(visitor: IVisitorPredicateTree): void {
+  predicatesAcceptVisitor(visitor: IVisitorPredicateTree | IVisitor<any>): void {
+    // don't love the IVisitor<any>,  but I think its probably safe.
+    // using 'TPredicateNode' causes issue when trying to implement with TPredicateProperties.
+
     this._predicateTree.acceptVisitor(visitor);
   }
 

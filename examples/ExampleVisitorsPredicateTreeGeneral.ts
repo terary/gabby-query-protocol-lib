@@ -1,16 +1,17 @@
-import { PredicateFormulaEditorFactory, TPredicateProperties } from "../src";
+import { PredicateFormulaEditorFactory } from "../src";
+import type { IVisitorPredicateTree, TPredicateNode, VisitorNodeType } from "../src";
 import { EXAMPLE_JSON_BLUE_SKIES } from "../src";
 
 const { predicateTreeJson } = EXAMPLE_JSON_BLUE_SKIES;
 const { predicateSubjectsDictionaryJson: subjectDictionaryJson } =
   EXAMPLE_JSON_BLUE_SKIES;
 
-export const predicateFormula = PredicateFormulaEditorFactory.fromJson({
+const predicateFormula = PredicateFormulaEditorFactory.fromJson({
   predicateTreeJson: predicateTreeJson,
   subjectDictionaryJson: subjectDictionaryJson,
 });
 
-import type { IVisitorPredicateTree, TPredicateNode, VisitorNodeType } from "../src";
+// see also Specialized Example
 
 class BranchIdVisitor implements IVisitorPredicateTree {
   private _startBrachId: string;
@@ -37,8 +38,5 @@ class BranchIdVisitor implements IVisitorPredicateTree {
 }
 
 const branchVisitor = new BranchIdVisitor(predicateFormula.rootNodeId);
-
 predicateFormula.predicatesAcceptVisitor(branchVisitor);
-// predicateFormula.predicateTree.acceptVisitor(branchSwitcher);
-
 console.log(branchVisitor.branchIds);
