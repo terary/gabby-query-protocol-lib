@@ -12,9 +12,10 @@ import { PredicateFormulaEditor } from "./PredicateFormulaEditor";
 import { VisitorNodeCounter } from "../Predicates/DirectedTreeGraph/VisitorNodeCounter";
 import { Validators } from "../validators";
 import { TPredicateSubjectDictionaryJson } from "../PredicateSubjects";
+import { predicateFormula } from "../../examples";
 
 describe("PredicateFormulaEditor", () => {
-  it("Should be create formula without issue (smoke test)", () => {
+  it("Should be create formula editor without issue (smoke test)", () => {
     const predicateFormulaEditor = PredicateFormulaEditorFactory.fromJson(
       blueSkiesJson as PredicateFormulaEditorJson
     );
@@ -31,6 +32,66 @@ describe("PredicateFormulaEditor", () => {
       predicateFormulaEditor.rootNodeId
     );
     expect(predicateChildren).toStrictEqual(["flatFileTest:0", "flatFileTest:1"]);
+  });
+  it("Should be create formula editor, predicate tree optional", () => {
+    const predicateFormulaEditor = PredicateFormulaEditorFactory.fromJson({
+      subjectDictionaryJson:
+        blueSkiesJson.subjectDictionaryJson as TPredicateSubjectDictionaryJson,
+    });
+    expect(predicateFormulaEditor.subjectsGetAllIds().sort()).toStrictEqual(
+      [
+        "firstName",
+        "isEmptySubject",
+        "isNullSubject",
+        "lastName",
+        "notEqualSubject",
+      ].sort()
+    );
+
+    const predicate = predicateFormulaEditor.predicatesGetPropertiesById(
+      predicateFormulaEditor.rootNodeId
+    );
+    const predicateChildren = predicateFormulaEditor.predicatesGetChildrenIds(
+      predicateFormulaEditor.rootNodeId
+    );
+
+    expect(predicate.operator).toBeDefined();
+    expect(predicate.subjectId).toBeDefined();
+    expect(predicate.value).toBeDefined();
+
+    expect(predicateChildren).toStrictEqual([]);
+  });
+  it(".fromJson Should throw error if json elements are undefined", () => {
+    const willThrow = () => {
+      const predicateFormulaEditor = PredicateFormulaEditorFactory.fromJson(
+        {} as PredicateFormulaEditorJson
+      );
+    };
+    expect(willThrow).toThrow(
+      "Can not build tree from undefined subjection dictionary json."
+    );
+    expect(willThrow).toThrow(PredicateTreeError);
+  });
+  it(".fromJson Should throw error if json is undefined", () => {
+    const willThrow = () => {
+      const predicateFormulaEditor = PredicateFormulaEditorFactory.fromJson(
+        //@ts-ignore
+        undefined as PredicateFormulaEditorJson
+      );
+    };
+    expect(willThrow).toThrow("Can not build tree from undefined json.");
+    expect(willThrow).toThrow(PredicateTreeError);
+  });
+  it(".fromEmpty Should throw error if json is undefined", () => {
+    const willThrow = () => {
+      const predicateFormulaEditor = PredicateFormulaEditorFactory.fromEmpty(
+        {} as PredicateFormulaEditorJson
+      );
+    };
+    expect(willThrow).toThrow(
+      "Build tree failed due to subjection dictionary errors. See debug messages for more details"
+    );
+    expect(willThrow).toThrow(PredicateTreeError);
   });
   it("Should be create formula editor with empty tree  without issue (smoke test)", () => {
     //
@@ -233,6 +294,11 @@ describe("PredicateFormulaEditor", () => {
       const subjectDictionary = predicateFormulaEditor.subjectDictionary;
       expect(subjectDictionary.constructor.name).toBe("PredicateSubjectDictionary");
     });
+    it(".subjectGetColumns() - should return subjects with type", () => {
+      const columns = predicateFormulaEditor.subjectGetColumns();
+      expect(columns).toStrictEqual(columnsBlueSkies);
+    });
+
     it("getOptionsList calls subjectDictionary.getOptionsList", () => {
       expect(predicateFormulaEditor.subjectsGetOptionsList("ANY_WILL_DO")).toStrictEqual({
         $anyOf: [],
@@ -261,3 +327,31 @@ describe("PredicateFormulaEditor", () => {
     });
   }); //describe('Wrapped Methods',
 });
+
+const columnsBlueSkies = [
+  {
+    subjectId: "firstName",
+    datatype: "string",
+    defaultLabel: "First Name",
+  },
+  {
+    subjectId: "lastName",
+    datatype: "string",
+    defaultLabel: "Last Name",
+  },
+  {
+    subjectId: "isNullSubject",
+    datatype: "string",
+    defaultLabel: "Can be null",
+  },
+  {
+    subjectId: "notEqualSubject",
+    datatype: "string",
+    defaultLabel: "Can be not equal",
+  },
+  {
+    subjectId: "isEmptySubject",
+    datatype: "string",
+    defaultLabel: "Can be empty",
+  },
+];
