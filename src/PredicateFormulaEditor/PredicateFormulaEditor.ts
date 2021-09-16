@@ -23,7 +23,6 @@ import {
 } from "../index";
 import { PredicateTreeError } from "../Predicates/PredicateTree/PredicateTreeError";
 import type { IVisitor, TPredicateTreeFactoryOptions } from "../Predicates";
-import { ValidatePredicateSubject } from "../validators/ValidatePredicateSubject";
 import { ValidateSubjectDictionary } from "../validators/ValidateSubjectDictionary";
 
 export class PredicateFormulaEditor
