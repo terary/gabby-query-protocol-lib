@@ -3,7 +3,6 @@ import { PredicateFormulaEditor } from "./PredicateFormulaEditor";
 import type { PredicateFormulaEditorJson } from "./types";
 import { blueSkiesJson } from "../test-case-files/harden-cases";
 import { TPredicateSubjectDictionaryJson } from "../PredicateSubjects";
-import { predicateFormula } from "../../examples";
 import { TPredicateProperties } from "../common";
 import { PredicateTreeError } from "../Predicates";
 
