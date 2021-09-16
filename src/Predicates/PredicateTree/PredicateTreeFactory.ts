@@ -25,6 +25,7 @@ export const PredicateTreeFactory = {
 
     return predicateTree;
   },
+
   fromJson: (
     json: TSerializedPredicateTree,
     subjectDictionary: IPredicateSubjectDictionary,
@@ -58,6 +59,7 @@ export const PredicateTreeFactory = {
 
     return predicateTree;
   },
+
   toJson: (tree: IPredicateTree): TSerializedPredicateTree => {
     return tree.toJson();
   },

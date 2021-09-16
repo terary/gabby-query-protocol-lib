@@ -23,6 +23,8 @@ import {
 } from "../index";
 import { PredicateTreeError } from "../Predicates/PredicateTree/PredicateTreeError";
 import type { IVisitor, TPredicateTreeFactoryOptions } from "../Predicates";
+import { ValidatePredicateSubject } from "../validators/ValidatePredicateSubject";
+import { ValidateSubjectDictionary } from "../validators/ValidateSubjectDictionary";
 
 export class PredicateFormulaEditor
   implements IExportToJson<PredicateFormulaEditor, PredicateFormulaEditorJson>
@@ -130,6 +132,7 @@ export class PredicateFormulaEditor
   subjectsGetById(subjectId: string): TPredicateSubjectWithId {
     return this._predicateSubjectDictionary.getSubject(subjectId);
   }
+
   subjectGetColumns(): TPredicateSubjectAsColumnDefinition[] {
     return this._predicateSubjectDictionary.getColumns();
   }
@@ -149,6 +152,19 @@ export class PredicateFormulaEditor
     json: PredicateFormulaEditorJson,
     options?: TPredicateTreeFactoryOptions
   ): PredicateFormulaEditor {
+    if (json === undefined) {
+      throw new PredicateTreeError("Can not build tree from undefined json.");
+    }
+    if (json.subjectDictionaryJson === undefined) {
+      throw new PredicateTreeError(
+        "Can not build tree from undefined subjection dictionary json."
+      );
+    }
+
+    if (json.predicateTreeJson === undefined) {
+      return PredicateFormulaEditor.fromEmpty(json.subjectDictionaryJson);
+    }
+
     const hpm = new PredicateFormulaEditor();
     hpm._predicateSubjectDictionary = PredicateSubjectDictionaryFactory.fromJson(
       json.subjectDictionaryJson
@@ -167,6 +183,15 @@ export class PredicateFormulaEditor
     options?: TPredicateTreeFactoryOptions
   ): PredicateFormulaEditor {
     const hpm = new PredicateFormulaEditor();
+
+    const { hasError, errorMessages } = ValidateSubjectDictionary(subjectDictionaryJson);
+    if (hasError) {
+      throw new PredicateTreeError(
+        "Build tree failed due to subjection dictionary errors. See debug messages for more details",
+        errorMessages
+      );
+    }
+
     hpm._predicateSubjectDictionary =
       PredicateSubjectDictionaryFactory.fromJson(subjectDictionaryJson);
 

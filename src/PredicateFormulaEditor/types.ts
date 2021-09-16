@@ -1,5 +1,5 @@
 import type { TPredicateSubjectDictionaryJson, TSerializedPredicateTree } from "../index";
 export type PredicateFormulaEditorJson = {
-  predicateTreeJson: TSerializedPredicateTree;
+  predicateTreeJson?: TSerializedPredicateTree;
   subjectDictionaryJson: TPredicateSubjectDictionaryJson;
 };

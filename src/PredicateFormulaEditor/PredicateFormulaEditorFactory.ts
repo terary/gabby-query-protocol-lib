@@ -22,6 +22,9 @@ export namespace PredicateFormulaEditorFactory {
     json: PredicateFormulaEditorJson,
     options?: TPredicateTreeFactoryOptions
   ): PredicateFormulaEditor {
+    // if (json.predicateTreeJson === undefined) {
+    //   return PredicateFormulaEditor.fromEmpty(json.subjectDictionaryJson, options);
+    // }
     return PredicateFormulaEditor.fromJson(json, options);
   }
 
