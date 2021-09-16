@@ -39,12 +39,14 @@ export class PredicateFormulaEditor
   get rootNodeId() {
     return this._predicateTree.rootNodeId;
   }
+
   get predicateTree(): IPredicateTree {
-    // cloning would add a level of projection
+    // cloning would add a level of protection
     return this._predicateTree;
   }
+
   get subjectDictionary(): IPredicateSubjectDictionary {
-    // cloning would add a level of projection
+    // cloning would add a level of protection
     return this._predicateSubjectDictionary;
   }
 
@@ -59,8 +61,7 @@ export class PredicateFormulaEditor
     parentId: string,
     predicate: TPredicateProperties | TPredicatePropertiesArrayValue
   ): string {
-    // predicatesAppend(parentId: string, predicate: TPredicateNode): string {
-    // what happens if client code does: formulaEditor('parentId', {operator: '$and'})
+    // only applicable for predicate, not predicateJunction
     const { hasError, errorMessages } = Validators.ValidatePredicateAgainstOperator(
       predicate,
       this._predicateSubjectDictionary
