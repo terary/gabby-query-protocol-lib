@@ -33,7 +33,7 @@ import {
   DirectedTreeGraph,
   SerializedTree,
 } from "../DirectedTreeGraph";
-import type { IVisitor, VisitorNodeType } from "../index";
+import type { IVisitorPredicateTree } from "../index";
 import type {
   TPredicateJunctionPropsWithChildIds,
   TPredicatePropertiesJunction,
@@ -61,7 +61,7 @@ export default class PredicateTree implements IPredicateTree {
   get defaultJunction(): TPredicatePropertiesJunction {
     return { ...this._defaultJunction };
   }
-  acceptVisitor(visitor: IVisitor<TPredicateNode>): void {
+  acceptVisitor(visitor: IVisitorPredicateTree): void {
     this._tree.accept(visitor);
   }
 

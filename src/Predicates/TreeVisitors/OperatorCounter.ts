@@ -5,14 +5,15 @@
 
 import { CONSTS } from "../../common";
 import type { TPredicateNode } from "../../index";
+import type { IVisitorPredicateTree } from "../PredicateTree/IVisitorPredicateTree";
 
 import { TPredicateOperator, TPredicateJunctionOperator } from "../../PredicateSubjects";
-import type { VisitorNodeType, IVisitor } from "../index";
+import type { VisitorNodeType } from "../index";
 
 const SUPPORTED_OPERATORS = CONSTS.JUNCTION_OPERATORS.concat(CONSTS.PREDICATE_OPERATORS);
 
 type ValidOpTypes = TPredicateOperator | TPredicateJunctionOperator;
-export class OperatorCounter implements IVisitor<TPredicateNode> {
+export class OperatorCounter implements IVisitorPredicateTree {
   private _operatorCounts: {
     [key in ValidOpTypes]?: number;
   } = {};
@@ -26,11 +27,6 @@ export class OperatorCounter implements IVisitor<TPredicateNode> {
   visit(parentId: string, nodeId: string, payload: TPredicateNode) {
     this._operatorCounts[payload.operator] =
       (this._operatorCounts[payload.operator] || 0) + 1;
-    // if (this._operatorCounts[payload.operator] === undefined) {
-    //   this._operatorCounts[payload.operator] = 0;
-    // } else {
-    //   this._operatorCounts[payload.operator] = (this._operatorCounts[payload.operator] || 0) + 1;
-    // }
   }
 
   get nodeType(): VisitorNodeType {

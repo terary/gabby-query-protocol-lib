@@ -6,10 +6,10 @@ import type {
   TSerializedPredicateTree,
 } from "../../index";
 //import { IDirectedTreeGraph } from "../DirectedTreeGraph/IDirectedTreeGraph";
-import type { IVisitor } from "../index";
+import type { IVisitorPredicateTree } from "../index";
 
 export interface IPredicateTree {
-  acceptVisitor(visitor: IVisitor<TPredicateNode>): void;
+  acceptVisitor(visitor: IVisitorPredicateTree): void;
 
   appendPredicate(parentId: string, predicate: TPredicateNode): string;
 

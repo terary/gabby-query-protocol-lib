@@ -4,7 +4,7 @@ import type {
   TPredicateSubjectAsColumnDefinition,
   TPredicateSubjectOptionsList,
   TPredicateSubjectWithId,
-  IVisitor,
+  IVisitorPredicateTree,
   TPredicateJunctionPropsWithChildIds,
   TPredicateProperties,
   TPredicatePropertiesArrayValue,
@@ -47,7 +47,7 @@ export class PredicateFormulaEditor
     return this._predicateSubjectDictionary;
   }
 
-  predicatesAcceptVisitor(visitor: IVisitor<TPredicateNode>): void {
+  predicatesAcceptVisitor(visitor: IVisitorPredicateTree): void {
     this._predicateTree.acceptVisitor(visitor);
   }
 
