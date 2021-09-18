@@ -15,7 +15,7 @@ import {
 } from "./isFunctions";
 import { IValidator, TValidatorResponse } from "./types";
 
-interface IValidatePredicateAgainstOperator {
+export interface IValidatePredicateAgainstOperator {
   (
     predicateJson: TPredicateNodeJson,
     subjects: IPredicateSubjectDictionary
