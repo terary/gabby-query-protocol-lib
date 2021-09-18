@@ -24,6 +24,7 @@ import type {
 
 import type { IPredicateTree } from "./Predicates/PredicateTree";
 import { Validators } from "./validators";
+import type { TValidatorResponse } from "./validators";
 
 import type {
   TOperatorOptions,
@@ -87,6 +88,7 @@ export type {
   TPredicateSubjectPropertiesJson, // json equivalent, all props optional (importing data)
   TPredicateSubjectOptionsList, // some predicate operators have list values, aka one of options
   TValidOperatorList, // to motivate compiler to enforce 'one of valid operator' logic
+  TValidatorResponse,
   TValueLabelList, // require for validate de-serialization
   VisitorNodeType,
 };
