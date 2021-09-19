@@ -1,7 +1,7 @@
 import * as exportNonTypes from "./index";
 describe("Library index - export non-type", () => {
   it('Should export only "PredicateTree" non type thing', () => {
-    expect(Object.keys(exportNonTypes).length).toBe(10);
+    expect(Object.keys(exportNonTypes).length).toBe(11);
 
     expect("CONSTS" in exportNonTypes).toBeTruthy();
     expect("EXAMPLE_JSON_BLUE_SKIES" in exportNonTypes).toBeTruthy();
@@ -13,6 +13,7 @@ describe("Library index - export non-type", () => {
     expect("PredicateTree" in exportNonTypes).toBeTruthy();
     expect("PredicateTreeError" in exportNonTypes).toBeTruthy();
     expect("PredicateTreeFactory" in exportNonTypes).toBeTruthy();
+    expect("TreeVisitors" in exportNonTypes).toBeTruthy();
     expect("Validators" in exportNonTypes).toBeTruthy();
   });
   it("Should not have undefined exports", () => {
