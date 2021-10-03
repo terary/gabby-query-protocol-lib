@@ -15,7 +15,9 @@ type TPredicateProperties = {
   // determined by the subject definition {subjectId, validOps, datatype...}
 };
 
-type TPredicatePropertiesArrayValue = TPredicateProperties & {
+type TPredicatePropertiesArrayValue = {
+  subjectId: string;
+  operator: TPredicateOperator;
   value: (number | string)[];
 };
 
