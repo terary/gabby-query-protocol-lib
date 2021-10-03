@@ -3,11 +3,14 @@ import {
   PredicateTreeFactory,
   VisitorNodeType,
   PredicateTreeError,
+  TreeVisitors,
 } from "./Predicates";
+
 import {
   PredicateFormulaEditorFactory,
   PredicateFormulaEditor,
 } from "./PredicateFormulaEditor";
+
 import type { PredicateFormulaEditorJson } from "./PredicateFormulaEditor";
 
 import { CONSTS } from "./common";
@@ -16,6 +19,7 @@ import {
   PredicateSubjectDictionary,
   PredicateSubjectDictionaryFactory,
 } from "./PredicateSubjects";
+
 import type {
   TSerializedPredicateTree,
   IVisitorPredicateTree,
@@ -60,6 +64,7 @@ export {
   PredicateTreeFactory,
   PredicateSubjectDictionary,
   PredicateSubjectDictionaryFactory,
+  TreeVisitors,
   Validators,
 };
 
