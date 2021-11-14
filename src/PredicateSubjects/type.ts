@@ -43,12 +43,8 @@ type TPredicateSubjectProperties = {
 type TPredicateSubjectDictionary = {
   [subjectId: string]: TPredicateSubjectProperties;
 };
+type TPredicateSubjectPropertiesJson = Partial<TPredicateSubjectProperties>;
 
-type TPredicateSubjectPropertiesJson = {
-  validOperators?: TValidOperatorList;
-  datatype?: TSupportedDatatype;
-  defaultLabel?: string;
-};
 type TPredicateSubjectDictionaryJson = {
   [subjectId: string]: TPredicateSubjectPropertiesJson;
 };

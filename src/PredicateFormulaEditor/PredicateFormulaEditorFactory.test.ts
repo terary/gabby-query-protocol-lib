@@ -22,8 +22,14 @@ describe("PredicateFormulaEditor", () => {
 
   it("Should call fromEmpty", () => {
     const fromJsonSpy = jest.spyOn(PredicateFormulaEditor, "fromEmpty");
+    const initialRootPredicate: TPredicateProperties = {
+      subjectId: "firstname",
+      operator: "$eq",
+      value: "Initial Root Predicate",
+    };
     PredicateFormulaEditorFactory.fromEmpty(
-      blueSkiesJson.subjectDictionaryJson as TPredicateSubjectDictionaryJson
+      blueSkiesJson.subjectDictionaryJson as TPredicateSubjectDictionaryJson,
+      initialRootPredicate
     );
     expect(fromJsonSpy).toBeCalled();
   });
@@ -39,23 +45,31 @@ describe("PredicateFormulaEditor", () => {
     expect(fromJsonSpy).toBeCalled();
   });
 
-  it("Should allow undefined predicate tree", () => {
-    const PredicateFormulaEditor = PredicateFormulaEditorFactory.fromJson({
-      subjectDictionaryJson:
-        blueSkiesJson.subjectDictionaryJson as TPredicateSubjectDictionaryJson,
-    });
+  it("Should throw error for undefined predicate tree", () => {
+    const willThrow = () => {
+      const PredicateFormulaEditor = PredicateFormulaEditorFactory.fromJson({
+        subjectDictionaryJson:
+          blueSkiesJson.subjectDictionaryJson as TPredicateSubjectDictionaryJson,
+      });
+    };
+    const errorMessage =
+      "Can not build tree from undefined predicate tree json. " +
+      "Either 'initialRootPredicate' or 'predicateTreeJson' MUST be defined";
 
-    const predicateTree = PredicateFormulaEditor.predicateTree;
-    const rootNodeId = PredicateFormulaEditor.rootNodeId;
-    const childrenIds = predicateTree.getChildrenIds(rootNodeId);
-    const rootNode = predicateTree.getPredicateById(rootNodeId) as TPredicateProperties;
+    expect(willThrow).toThrow(PredicateTreeError);
+    expect(willThrow).toThrow(errorMessage);
 
-    expect(childrenIds).toStrictEqual([]);
-    expect(rootNode.operator).toBeDefined();
-    expect(rootNode.subjectId).toBeDefined();
-    expect(rootNode.value).toBeDefined();
+    // const predicateTree = PredicateFormulaEditor.predicateTree;
+    // const rootNodeId = PredicateFormulaEditor.rootNodeId;
+    // const childrenIds = predicateTree.getChildrenIds(rootNodeId);
+    // const rootNode = predicateTree.getPredicateById(rootNodeId) as TPredicateProperties;
 
-    const fromJsonSpy = jest.spyOn(PredicateFormulaEditor, "toJson");
-    PredicateFormulaEditorFactory.toJson(PredicateFormulaEditor);
+    // expect(childrenIds).toStrictEqual([]);
+    // expect(rootNode.operator).toBeDefined();
+    // expect(rootNode.subjectId).toBeDefined();
+    // expect(rootNode.value).toBeDefined();
+
+    // const fromJsonSpy = jest.spyOn(PredicateFormulaEditor, "toJson");
+    // PredicateFormulaEditorFactory.toJson(PredicateFormulaEditor);
   });
 });

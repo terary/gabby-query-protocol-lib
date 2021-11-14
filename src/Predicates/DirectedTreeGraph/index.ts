@@ -1,6 +1,6 @@
 import DirectedTreeError from "./DirectedTreeError";
 import DirectedTreeGraph from "./DirectedTreeGraph";
-import type {
+export type {
   IVisitor,
   SerializedTree,
   SerializedTreeNode,
@@ -8,4 +8,3 @@ import type {
 } from "./types";
 
 export { DirectedTreeError, DirectedTreeGraph };
-export type { IVisitor, SerializedTree, SerializedTreeNode, VisitorNodeType };

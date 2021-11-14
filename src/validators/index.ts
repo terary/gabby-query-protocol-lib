@@ -2,7 +2,9 @@ import { NoSingleChildRule } from "./NoSingleChildRule";
 import { ValidateAllPredicatesAgainstOperator } from "./ValidateAllPredicatesAgainstOperator";
 import { ValidatePredicateAgainstOperator } from "./ValidatePredicateAgainstOperator";
 import { ValidateSubjectDictionary } from "./ValidateSubjectDictionary";
-import type { TValidatorResponse } from "./types";
+
+export type { TValidatorResponse } from "./types";
+export type { IValidatePredicateAgainstOperator } from "./ValidatePredicateAgainstOperator";
 
 export const Validators = {
   ValidateAllPredicatesAgainstOperator,
@@ -10,5 +12,3 @@ export const Validators = {
   ValidatePredicateAgainstOperator,
   ValidateSubjectDictionary,
 };
-
-export type { TValidatorResponse };

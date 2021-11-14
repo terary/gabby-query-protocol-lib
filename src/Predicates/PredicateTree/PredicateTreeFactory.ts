@@ -1,7 +1,12 @@
 import PredicateTree from "./PredicateTree";
 import type { IPredicateTree } from "./IPredicateTree";
 import { PredicateTreeError } from "./PredicateTreeError";
-import type { TSerializedPredicateTree, IPredicateSubjectDictionary } from "../../index";
+import type {
+  TSerializedPredicateTree,
+  IPredicateSubjectDictionary,
+  TPredicatePropertiesArrayValue,
+  TPredicateProperties,
+} from "../../index";
 import { Validators } from "../../validators";
 
 export type TPredicateTreeFactoryOptions = {
@@ -11,6 +16,7 @@ export type TPredicateTreeFactoryOptions = {
 export const PredicateTreeFactory = {
   fromEmpty: (
     subjectDictionary: IPredicateSubjectDictionary,
+    initialPredicateItem: TPredicateProperties | TPredicatePropertiesArrayValue,
     options?: TPredicateTreeFactoryOptions
   ): IPredicateTree => {
     //

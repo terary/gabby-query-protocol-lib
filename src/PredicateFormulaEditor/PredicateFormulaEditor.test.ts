@@ -13,6 +13,7 @@ import { VisitorNodeCounter } from "../Predicates/DirectedTreeGraph/VisitorNodeC
 import { Validators } from "../validators";
 import { TPredicateSubjectDictionaryJson } from "../PredicateSubjects";
 import { predicateFormula } from "../../examples";
+import { TPredicateProperties } from "..";
 
 describe("PredicateFormulaEditor", () => {
   it("Should be create formula editor without issue (smoke test)", () => {
@@ -34,10 +35,22 @@ describe("PredicateFormulaEditor", () => {
     expect(predicateChildren).toStrictEqual(["flatFileTest:0", "flatFileTest:1"]);
   });
   it("Should be create formula editor, predicate tree optional", () => {
-    const predicateFormulaEditor = PredicateFormulaEditorFactory.fromJson({
-      subjectDictionaryJson:
-        blueSkiesJson.subjectDictionaryJson as TPredicateSubjectDictionaryJson,
-    });
+    // this behavior has changed.  Now if now predicateJson provide,
+    // client code should use fromEmpty and provide initialRootPredicate
+
+    const initialRootPredicate: TPredicateProperties = {
+      subjectId: "firstname",
+      operator: "$eq",
+      value: "Initial Root Predicate",
+    };
+
+    const predicateFormulaEditor = PredicateFormulaEditorFactory.fromJson(
+      {
+        subjectDictionaryJson:
+          blueSkiesJson.subjectDictionaryJson as TPredicateSubjectDictionaryJson,
+      },
+      initialRootPredicate
+    );
     expect(predicateFormulaEditor.subjectsGetAllIds().sort()).toStrictEqual(
       [
         "firstName",
@@ -83,9 +96,15 @@ describe("PredicateFormulaEditor", () => {
     expect(willThrow).toThrow(PredicateTreeError);
   });
   it(".fromEmpty Should throw error if json is undefined", () => {
+    const initialRootPredicate: TPredicateProperties = {
+      subjectId: "firstname",
+      operator: "$eq",
+      value: "Initial Root Predicate",
+    };
     const willThrow = () => {
       const predicateFormulaEditor = PredicateFormulaEditorFactory.fromEmpty(
-        {} as PredicateFormulaEditorJson
+        {} as PredicateFormulaEditorJson,
+        initialRootPredicate
       );
     };
     expect(willThrow).toThrow(
@@ -93,11 +112,18 @@ describe("PredicateFormulaEditor", () => {
     );
     expect(willThrow).toThrow(PredicateTreeError);
   });
-  it("Should be create formula editor with empty tree  without issue (smoke test)", () => {
+  it("Should be create formula editor with initialRootPredicate  without issue (smoke test)", () => {
+    const initialRootPredicate: TPredicateProperties = {
+      subjectId: "firstname",
+      operator: "$eq",
+      value: "Initial Root Predicate",
+    };
+
     //
     // exercise
     const predicateFormulaEditor = PredicateFormulaEditorFactory.fromEmpty(
-      blueSkiesJson.subjectDictionaryJson as TPredicateSubjectDictionaryJson
+      blueSkiesJson.subjectDictionaryJson as TPredicateSubjectDictionaryJson,
+      initialRootPredicate
     );
 
     // postConditions
@@ -124,6 +150,7 @@ describe("PredicateFormulaEditor", () => {
   it("Should be create formula editor with custom rootNode", () => {
     const predicateFormulaEditor = PredicateFormulaEditorFactory.fromJson(
       blueSkiesJson as PredicateFormulaEditorJson,
+      undefined,
       { newRootId: "myAwesomeRoot" }
     );
     expect(predicateFormulaEditor.subjectsGetAllIds().sort()).toStrictEqual(
@@ -225,7 +252,7 @@ describe("PredicateFormulaEditor", () => {
       const spyValidator = jest.spyOn(Validators, "ValidatePredicateAgainstOperator");
 
       const willThrow = () => {
-        predicateFormulaEditor.predicatesAppend("parentId", {
+        predicateFormulaEditor.predicatesAppend("flatFileTest", {
           operator: "$eq",
           value: "test",
           subjectId: "firstName",

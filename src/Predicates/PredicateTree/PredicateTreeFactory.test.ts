@@ -64,11 +64,15 @@ describe("PredicateTreeFactory", () => {
   }); // fromJson
   describe(".fromEmpty", () => {
     it("Should create empty predicate tree, with default subject as root predicate", () => {
-      const emptyTree = PredicateTreeFactory.fromEmpty(subjectDictionary);
+      const initialRootPredicate = subjectDictionary.makeEmptyPredicate();
+      const emptyTree = PredicateTreeFactory.fromEmpty(
+        subjectDictionary,
+        initialRootPredicate
+      );
 
       expect(emptyTree.getChildrenIds(emptyTree.rootNodeId)).toStrictEqual([]);
       expect(emptyTree.getPredicateById(emptyTree.rootNodeId)).toStrictEqual(
-        subjectDictionary.makeEmptyPredicate()
+        initialRootPredicate
       );
     });
   });

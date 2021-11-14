@@ -8,8 +8,10 @@ const negScientificNotationRegEx = /[\d]+(e-)[\d]+/;
 // matches: 2021-03-23T23:23:58(+/-)hh:mm
 // matches: 2021-03-29T23:23:58(+/-)29:49  <-- this is bad.
 // alternative maybe new Date(...).toISO() === dateString. (probably with regEx. iso has a few formats)
+// const iso8601LongRegex =
+//   /^\d{4}-[0-1][0-9]-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(Z|(\+|-)[0-2]\d:[0-5]\d)$/;
 const iso8601LongRegex =
-  /^\d{4}-[0-1][0-9]-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(Z|(\+|-)[0-2]\d:[0-5]\d)$/;
+  /^\d{4}-[0-1][0-9]-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d((.\d{3}){0,1}Z|(\+|-)[0-2]\d:[0-5]\d)$/;
 
 export const isString = (value: any) => {
   return typeof value === "string" || value instanceof String;
