@@ -34,11 +34,12 @@ type TPredicateNode =
   | TPredicatePropertiesJunction
   | TPredicatePropertiesArrayValue;
 
-type TPredicateNodeJson = {
-  subjectId?: string;
-  operator?: TPredicateOperator | TPredicateJunctionOperator;
-  value?: number | string | null | (number | string)[];
-};
+type TPredicateNodeJson = Partial<TPredicateNode>;
+// type TPredicateNodeJson = {
+//   subjectId?: string;
+//   operator?: TPredicateOperator | TPredicateJunctionOperator;
+//   value?: number | string | null | (number | string)[];
+// };
 
 export type {
   TPredicateJunctionPropsWithChildIds,
