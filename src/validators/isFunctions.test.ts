@@ -97,8 +97,9 @@ describe("isFunctions", () => {
     });
   }); // isDate
   describe("isDateISO8601String", () => {
-    it("Should return true for string that accurately describe ISO8601 date 2021-03-23T23:23:58Z ", () => {
+    it("Should return true for string that accurately describe ISO8601 date 2021-03-23T23:23:58Z", () => {
       expect(isDateISO8601String("2021-03-23T23:23:58Z")).toStrictEqual(true);
+      expect(isDateISO8601String("2021-03-23T23:23:58.000Z")).toStrictEqual(true);
       expect(isDateISO8601String("2021-03-23T23:23:58+03:00")).toStrictEqual(true);
     });
     it("Should return true for string that accurately describe ISO8601 date 2021-03-23T23:23:58+03:00 ", () => {
