@@ -3,6 +3,7 @@ import { ValidateAllPredicatesAgainstOperator } from "./ValidateAllPredicatesAga
 import { ValidatePredicateAgainstOperator } from "./ValidatePredicateAgainstOperator";
 import { ValidateSubjectDictionary } from "./ValidateSubjectDictionary";
 import type { TValidatorResponse } from "./types";
+import type { IValidatePredicateAgainstOperator } from "./ValidatePredicateAgainstOperator";
 
 export const Validators = {
   ValidateAllPredicatesAgainstOperator,
@@ -11,4 +12,4 @@ export const Validators = {
   ValidateSubjectDictionary,
 };
 
-export type { TValidatorResponse };
+export type { TValidatorResponse, IValidatePredicateAgainstOperator };

@@ -28,7 +28,7 @@ import type {
 
 import type { IPredicateTree } from "./Predicates/PredicateTree";
 import { Validators } from "./validators";
-import type { TValidatorResponse } from "./validators";
+import type { TValidatorResponse, IValidatePredicateAgainstOperator } from "./validators";
 
 import type {
   TOperatorOptions,
@@ -71,6 +71,7 @@ export {
 export type {
   IPredicateSubjectDictionary,
   IPredicateTree, // to be used instead of PredicateTree
+  IValidatePredicateAgainstOperator,
   IVisitor,
   IVisitorPredicateTree,
   TOperatorOptions,
