@@ -169,9 +169,7 @@ export default class PredicateTree implements IPredicateTree {
       return null;
     }
 
-    // does this pull payload or node.. I think payload.
     const operator = this.getPredicateById(predicateId) as TPredicatePropertiesJunction;
-
     const childrenIds = this.getChildrenIds(predicateId);
 
     if (operator === null) {

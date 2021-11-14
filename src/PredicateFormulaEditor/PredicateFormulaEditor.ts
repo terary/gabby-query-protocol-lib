@@ -150,6 +150,7 @@ export class PredicateFormulaEditor
 
   static fromJson(
     json: PredicateFormulaEditorJson,
+    initialRootPredicate?: TPredicateProperties | TPredicatePropertiesArrayValue,
     options?: TPredicateTreeFactoryOptions
   ): PredicateFormulaEditor {
     if (json === undefined) {
@@ -161,8 +162,19 @@ export class PredicateFormulaEditor
       );
     }
 
+    if (!json.predicateTreeJson && !initialRootPredicate) {
+      throw new PredicateTreeError(
+        "Can not build tree from undefined predicate tree json. " +
+          "Either 'initialRootPredicate' or 'predicateTreeJson' MUST be defined"
+      );
+    }
+
+    // no longer possible
     if (json.predicateTreeJson === undefined) {
-      return PredicateFormulaEditor.fromEmpty(json.subjectDictionaryJson);
+      return PredicateFormulaEditor.fromEmpty(
+        json.subjectDictionaryJson,
+        initialRootPredicate as TPredicateProperties | TPredicatePropertiesArrayValue
+      );
     }
 
     const hpm = new PredicateFormulaEditor();
@@ -180,6 +192,7 @@ export class PredicateFormulaEditor
 
   static fromEmpty(
     subjectDictionaryJson: TPredicateSubjectDictionaryJson,
+    initialRootPredicate: TPredicatePropertiesArrayValue | TPredicateProperties,
     options?: TPredicateTreeFactoryOptions
   ): PredicateFormulaEditor {
     const hpm = new PredicateFormulaEditor();
@@ -197,6 +210,7 @@ export class PredicateFormulaEditor
 
     hpm._predicateTree = PredicateTreeFactory.fromEmpty(
       hpm._predicateSubjectDictionary,
+      initialRootPredicate,
       options
     );
     return hpm;

@@ -8,6 +8,7 @@
 # testing
 /coverage
 /dev-debug
+/src/dev-debug
 
 
 # production
