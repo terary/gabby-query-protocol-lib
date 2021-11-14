@@ -252,7 +252,7 @@ describe("PredicateFormulaEditor", () => {
       const spyValidator = jest.spyOn(Validators, "ValidatePredicateAgainstOperator");
 
       const willThrow = () => {
-        predicateFormulaEditor.predicatesAppend("parentId", {
+        predicateFormulaEditor.predicatesAppend("flatFileTest", {
           operator: "$eq",
           value: "test",
           subjectId: "firstName",

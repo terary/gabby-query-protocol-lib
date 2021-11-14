@@ -65,10 +65,11 @@ export default class PredicateTree implements IPredicateTree {
     this._tree.accept(visitor);
   }
 
-  // if possible always initialize with a predicate.
-  // if root has no predicate, first appendPredicate will
-  // assign predict to root (may not be what client code expects);
   appendPredicate(parentId: string, predicate: TPredicateNode): string {
+    const parentNode = this._tree.getNodeById(parentId);
+    if (parentNode === null) {
+      throw new PredicateTreeError(`Couldn't locate parent with id: '${parentId}'`);
+    }
     const siblingIds = this._tree.getChildrenIds(parentId);
     if (siblingIds.length === 0) {
       const firstChildPredicate = this._tree.getPayload(parentId);

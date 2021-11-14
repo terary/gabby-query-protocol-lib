@@ -171,6 +171,23 @@ describe("PredicateTree", () => {
       expect(noRootPredicateTree.getPredicateById("theTree")).toStrictEqual(newPredicate);
       expect(noRootPredicateTree.getChildrenIds("theTree").length).toBe(0);
     });
+    it("Should check parent exists", () => {
+      // setup
+      const noRootPredicateTree = new PredicateTree("theTree");
+
+      // preConditions
+      expect(noRootPredicateTree.getPredicateById("theTree")).toBeUndefined();
+      expect(noRootPredicateTree.getChildrenIds("theTree").length).toBe(0);
+
+      // exercise
+      const willThrow = () => {
+        noRootPredicateTree.appendPredicate("DOES_NOT_EXIST", newPredicate);
+      };
+      expect(willThrow).toThrow("Couldn't locate parent with id: 'DOES_NOT_EXIST'");
+      // post conditions
+      // expect(noRootPredicateTree.getPredicateById("theTree")).toStrictEqual(newPredicate);
+      // expect(noRootPredicateTree.getChildrenIds("theTree").length).toBe(0);
+    });
     it("Should insert invisible child if parent has no children (all parents have 2 or more children rule)", () => {
       // setup
       const expectedRootPredicate = { operator: "$and" };
