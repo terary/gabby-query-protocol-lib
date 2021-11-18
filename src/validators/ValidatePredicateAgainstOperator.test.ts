@@ -118,6 +118,20 @@ describe("ValidatePredicateAgainstOperator", () => {
 
       expect(actualResult).toStrictEqual(expectedResult);
     });
+    it("Should *not* fail for valid $nanyOf options (blue skies)", () => {
+      const predicateJson = testPredicates.validNanyOfOption.predicateJson.payload;
+      const expectedResult = {
+        hasError: false,
+        errorMessages: [],
+      };
+
+      const actualResult = ValidatePredicateAgainstOperator(
+        predicateJson as TPredicateNodeJson,
+        subjectDictionary
+      );
+
+      expect(actualResult).toStrictEqual(expectedResult);
+    });
     it("Should fail for invalid $anyOf options (blue skies)", () => {
       const predicateJson = testPredicates.invalidAnyOfOption.predicateJson.payload;
       const expectedResult = {
@@ -135,6 +149,24 @@ describe("ValidatePredicateAgainstOperator", () => {
 
       expect(actualResult).toStrictEqual(expectedResult);
     });
+    it("Should fail for invalid $nanyOf options (blue skies)", () => {
+      const predicateJson = testPredicates.invalidNanyOfOption.predicateJson.payload;
+      const expectedResult = {
+        hasError: true,
+        errorMessages: [
+          "option: 'CANADA-SOUTH', 'MX-NORTH' is not a valid option for subject: notAnyOneSubject",
+          "Valid options include: 'US-WEST', 'US-EAST', 'US-SOUTH', 'US-NORTH'",
+        ],
+      };
+
+      const actualResult = ValidatePredicateAgainstOperator(
+        predicateJson as TPredicateNodeJson,
+        subjectDictionary
+      );
+
+      expect(actualResult).toStrictEqual(expectedResult);
+    });
+
     it("Should *not* fail for valid $onOf options (blue skies)", () => {
       const predicateJson = testPredicates.validOneOfOption.predicateJson.payload;
       const expectedResult = {
