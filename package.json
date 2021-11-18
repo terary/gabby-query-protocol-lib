@@ -1,6 +1,6 @@
 {
   "name": "gabby-query-protocol-lib",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.1-beta.0",
   "description": "Library Support for the Gabby Query Protocol",
   "main": "dist/index.js",
   "module": "dist/index.js",

@@ -61,6 +61,10 @@ export const ValidatePredicateAgainstOperator: IValidatePredicateAgainstOperator
     return isValidOptionOf(predicate, subject, "$anyOf");
   }
 
+  if (predicate.operator === "$nanyOf") {
+    return isValidOptionOf(predicate, subject, "$nanyOf");
+  }
+
   if (predicate.operator === "$oneOf") {
     return isValidOptionOf(predicate, subject, "$oneOf");
   }
@@ -154,7 +158,7 @@ const isValidDatetime: IValidator = (predicate: TPredicateProperties) => {
 const isValidOptionOf: IValidator = (
   predicate: TPredicateProperties,
   subject: TPredicateSubjectWithId,
-  operator: "$anyOf" | "$oneOf"
+  operator: "$anyOf" | "$nanyOf" | "$oneOf"
 ) => {
   if (isValidOption(predicate, subject, operator)) {
     return {
@@ -178,7 +182,7 @@ const isValidOptionOf: IValidator = (
 
 const getValidOptionValues = (
   subject: TPredicateSubjectWithId,
-  operator: "$anyOf" | "$oneOf"
+  operator: "$anyOf" | "$nanyOf" | "$oneOf"
 ) => {
   const options = (subject.validOperators[operator] as TOperatorOptions).optionList || [];
   return options.map((option) => option.value);
@@ -187,10 +191,11 @@ const getValidOptionValues = (
 const isValidOption = (
   predicate: TPredicateProperties,
   subject: TPredicateSubjectWithId,
-  operator: "$anyOf" | "$oneOf"
+  operator: "$anyOf" | "$nanyOf" | "$oneOf"
 ): boolean => {
   const validOptionValues = getValidOptionValues(subject, operator);
-  const selectedOptions = operator === "$anyOf" ? predicate.value : [predicate.value];
+  const selectedOptions =
+    operator === "$anyOf" || operator === "$nanyOf" ? predicate.value : [predicate.value];
 
   for (let opt of selectedOptions as (string | number)[]) {
     if (!validOptionValues.includes(opt)) {

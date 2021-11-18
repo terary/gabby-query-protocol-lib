@@ -29,6 +29,8 @@ export const PREDICATE_OPERATORS = [
   "$nanyOf", // list value probable implementation: NOT in('x','y')
   "$ne",
 ];
+export const SUPPORTED_PREDICATE_OPERATORS = PREDICATE_OPERATORS;
+
 export const JUNCTION_OPERATORS = ["$and", "$nand", "$nor", "$or"];
 
 export const PREDICATE_PROPERTIES = ["operator", "value", "subjectId"];
