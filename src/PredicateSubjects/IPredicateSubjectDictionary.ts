@@ -10,8 +10,15 @@ import type {
 export interface IPredicateSubjectDictionary
   extends IExportToJson<IPredicateSubjectDictionary, TPredicateSubjectDictionaryJson> {
   getOptionsList(subjectId: string): TPredicateSubjectOptionsList;
+
   // getAllSubjects(): TPredicateSubjectDictionary; // internal dictionary
   getSubjectIds(): string[];
+  getSubjectById(subjectId: string): TPredicateSubjectWithId;
+
+  /**
+   * @deprecated  use getSubjectById
+   * @param subjectId
+   */
   getSubject(subjectId: string): TPredicateSubjectWithId;
   //   getSubjectOrThrow(subjectId: string): TPredicateSubjectWithId;
   getDefaultSubject(): TPredicateSubjectWithId;

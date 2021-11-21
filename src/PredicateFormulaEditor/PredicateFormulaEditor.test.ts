@@ -39,7 +39,7 @@ describe("PredicateFormulaEditor", () => {
     // client code should use fromEmpty and provide initialRootPredicate
 
     const initialRootPredicate: TPredicateProperties = {
-      subjectId: "firstname",
+      subjectId: "firstName",
       operator: "$eq",
       value: "Initial Root Predicate",
     };
@@ -114,7 +114,7 @@ describe("PredicateFormulaEditor", () => {
   });
   it("Should be create formula editor with initialRootPredicate  without issue (smoke test)", () => {
     const initialRootPredicate: TPredicateProperties = {
-      subjectId: "firstname",
+      subjectId: "firstName",
       operator: "$eq",
       value: "Initial Root Predicate",
     };
@@ -142,10 +142,9 @@ describe("PredicateFormulaEditor", () => {
     const rootPredicate = predicateFormulaEditor.predicatesGetPropertiesById(
       predicateFormulaEditor.rootNodeId
     );
-    const expectedRootPredicate = predicateFormulaEditor.makeEmptyPredicate();
 
     expect(predicateChildren).toStrictEqual([]);
-    expect(rootPredicate).toStrictEqual(expectedRootPredicate);
+    expect(rootPredicate).toStrictEqual(initialRootPredicate);
   });
   it("Should be create formula editor with custom rootNode", () => {
     const predicateFormulaEditor = PredicateFormulaEditorFactory.fromJson(
@@ -351,6 +350,15 @@ describe("PredicateFormulaEditor", () => {
       expect(predicateFormulaEditor.predicatesToJsonTree()).toStrictEqual(
         blueSkiesJson.predicateTreeJson
       );
+    });
+    it(".makeEmptyPredicate ", () => {
+      const spySubjects = jest.spyOn(
+        predicateFormulaEditor.subjectDictionary,
+        "makeEmptyPredicate"
+      );
+
+      predicateFormulaEditor.makeEmptyPredicate();
+      expect(spySubjects).toBeCalled();
     });
   }); //describe('Wrapped Methods',
 });

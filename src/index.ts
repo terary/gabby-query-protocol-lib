@@ -51,5 +51,6 @@ export type {
   TPredicatePropertiesJunction,
   TPredicateNode,
   TPredicateNodeJson,
+  TSupportedDatatype,
   TValueLabelList,
 } from "./common/type";

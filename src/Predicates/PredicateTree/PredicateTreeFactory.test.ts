@@ -6,6 +6,7 @@ import { TSerializedPredicateTree } from "..";
 import { TPredicateSubjectDictionaryJson } from "../../index";
 import { PredicateSubjectDictionaryFactory } from "../../PredicateSubjects";
 import { assert } from "console";
+import { PredicateTreeError } from "./PredicateTreeError";
 
 const predicateTreeJson = cloneDeep(
   blueSkiesPredicateTreeJson
@@ -74,6 +75,34 @@ describe("PredicateTreeFactory", () => {
       expect(emptyTree.getPredicateById(emptyTree.rootNodeId)).toStrictEqual(
         initialRootPredicate
       );
+    });
+    it("Should throw error if initial predicate is invalid", () => {
+      const initialRootPredicate = { something: "invalid" };
+
+      const willThrow = () => {
+        const emptyTree = PredicateTreeFactory.fromEmpty(
+          subjectDictionary,
+          //@ts-ignore
+          initialRootPredicate
+        );
+      };
+      expect(willThrow).toThrowError(
+        "Failed to initialize predicate tree with initial predicate."
+      );
+    });
+    it("Should throw error if initial predicate is invalid, should have debug output", () => {
+      const initialRootPredicate = { something: "invalid" };
+
+      try {
+        const emptyTree = PredicateTreeFactory.fromEmpty(
+          subjectDictionary,
+          //@ts-ignore
+          initialRootPredicate
+        );
+      } catch (e) {
+        expect(e).toBeInstanceOf(PredicateTreeError);
+        // expect(e.message).toStrictEqual("something");
+      }
     });
   });
 

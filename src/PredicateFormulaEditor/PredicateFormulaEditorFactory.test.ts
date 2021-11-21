@@ -23,7 +23,7 @@ describe("PredicateFormulaEditor", () => {
   it("Should call fromEmpty", () => {
     const fromJsonSpy = jest.spyOn(PredicateFormulaEditor, "fromEmpty");
     const initialRootPredicate: TPredicateProperties = {
-      subjectId: "firstname",
+      subjectId: "firstName",
       operator: "$eq",
       value: "Initial Root Predicate",
     };

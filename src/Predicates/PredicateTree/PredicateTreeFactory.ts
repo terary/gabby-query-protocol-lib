@@ -19,13 +19,24 @@ export const PredicateTreeFactory = {
     initialPredicateItem: TPredicateProperties | TPredicatePropertiesArrayValue,
     options?: TPredicateTreeFactoryOptions
   ): IPredicateTree => {
-    //
+    const validation = Validators.ValidatePredicateAgainstOperator(
+      initialPredicateItem,
+      subjectDictionary
+    );
+    if (validation.hasError) {
+      throw new PredicateTreeError(
+        "Failed to initialize predicate tree with initial predicate.",
+        validation.errorMessages
+      );
+    }
+
     const defaultOptions: TPredicateTreeFactoryOptions = { newRootId: undefined };
     const effectiveOptions = { ...defaultOptions, ...options };
 
     const predicateTree = new PredicateTree(
       effectiveOptions.newRootId || "root",
-      subjectDictionary.makeEmptyPredicate()
+      initialPredicateItem
+      // subjectDictionary.makeEmptyPredicate()
     );
 
     return predicateTree;

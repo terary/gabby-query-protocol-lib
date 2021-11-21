@@ -80,7 +80,7 @@ export class PredicateSubjectDictionary implements IPredicateSubjectDictionary {
     return columns;
   }
 
-  getSubject(subjectId: string): TPredicateSubjectWithId {
+  getSubjectById(subjectId: string): TPredicateSubjectWithId {
     if (subjectId in this._querySubjects) {
       return { subjectId, ...this._querySubjects[subjectId] };
     }
@@ -89,6 +89,15 @@ export class PredicateSubjectDictionary implements IPredicateSubjectDictionary {
     //        or throw eg *orThrow
     // @ts-ignore
     return null;
+  }
+
+  /**
+   * @deprecated  use getSubjectById
+   * @param subjectId
+   * @returns predicateSubject or null
+   */
+  getSubject(subjectId: string): TPredicateSubjectWithId {
+    return this.getSubjectById(subjectId);
   }
 
   makeEmptyPredicate(): TPredicateProperties {
