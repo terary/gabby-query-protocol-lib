@@ -1,7 +1,7 @@
 {
-  "name": "gabby-query-protocol-transformers",
-  "version": "1.0.0-beta.0",
-  "description": "Gabby Query Protocol - transformers",
+  "description": "Library Support for the Gabby Query Protocol",
+  "version": "2.0.2-beta.0",
+  "name": "gabby-query-protocol-lib",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [
