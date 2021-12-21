@@ -1,17 +1,12 @@
 {
-  "name": "gabby-query-protocol-lib",
-  "version": "2.0.2-beta.0",
   "description": "Library Support for the Gabby Query Protocol",
+  "version": "2.0.2-beta.0",
+  "name": "gabby-query-protocol-lib",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [
     "dist"
   ],
-  "homepage": "https://terary.github.io/gabby-query-protocol-lib/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/terary/gabby-query-protocol-lib"
-  },
   "scripts": {
     "test": "jest",
     "test:all": "npm run test -- --watchAll=false --verbose",
@@ -52,6 +47,8 @@
   },
   "dependencies": {
     "@types/lodash.clonedeep": "^4.5.6",
+    "gabby-query-protocol-lib": "^2.0.2-beta.0",
+    "gabby-query-protocol-projection": "^2.0.1-beta.0",
     "lodash.clonedeep": "^4.5.0",
     "lodash.differencewith": "^4.5.0",
     "lodash.pick": "^4.4.0"
