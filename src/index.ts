@@ -1,4 +1,10 @@
-export {};
+export {
+  PredicateTree,
+  PredicateTreeFactory,
+  VisitorNodeType,
+  PredicateTreeError,
+  TreeVisitors,
+} from "./Predicates";
 
 export {
   PredicateFormulaEditorFactory,

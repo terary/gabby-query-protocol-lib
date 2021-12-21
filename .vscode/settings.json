@@ -3,6 +3,7 @@
   "editor.formatOnSave": true,
   "eslint.alwaysShowStatus": true,
   "cSpell.words": [
+    "Projectable",
     "betweeni",
     "betweenx",
     "clonedeep",
@@ -12,10 +13,8 @@
     "firstname",
     "lastname",
     "nany",
-    "Projectable",
     "projectables",
-    "testables",
-    "Unsanitized"
+    "testables"
   ],
   "files.watcherExclude": {
     "**/.git/objects/**": true,
