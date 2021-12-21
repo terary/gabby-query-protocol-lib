@@ -118,7 +118,6 @@ const valueToJavascript = (
 
   return sqlValue;
 };
-
 const _matcherMux = (
   predicateId: string,
   predicateEditor: PredicateFormulaEditor,
@@ -132,8 +131,10 @@ const _matcherMux = (
       predicate.operator as TPredicateJunctionOperator
     );
 
+    /* istanbul ignore next */
     const openTerm =
       predicateId === predicateEditor.rootNodeId ? `${negation}` : `${negation}(${nl()}`;
+    /* istanbul ignore next */
     const closeTerm =
       predicateId === predicateEditor.rootNodeId ? `; ` : `${nl()}${tabs(tabCount)})`;
 
@@ -193,4 +194,8 @@ export const jsConv = {
     return fn;
   },
   matcherAsSlowSafeFunction: () => {},
+};
+
+export const untestable = {
+  tabs,
 };

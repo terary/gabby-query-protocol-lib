@@ -24,11 +24,59 @@ describe("matcher-functions", () => {
         } as TPredicateProperties;
         const expression = simplePredicateToJsExpression(predicate, "integer") || "";
         const matcher = expressionToFunction(expression, "parameter");
-        expect(matcher("3")).toBe(false);
-        expect(matcher(3)).toBe(true);
-        expect(matcher("2")).toBe(false);
+        const v = matcher({ parameter: 3 });
+        expect(matcher({ parameter: "3" })).toBe(false);
+        expect(matcher({ parameter: 3 })).toBe(true);
+        expect(matcher({ parameter: 2 })).toBe(false);
       });
     }); // $eq
+    describe("Non simple operator", () => {
+      it("Should throw error if used with $like", () => {
+        const predicate = {
+          operator: "$like",
+          value: 3,
+          subjectId: "parameter",
+        } as TPredicateProperties;
+
+        const willThrow = () => {
+          simplePredicateToJsExpression(predicate, "integer");
+        };
+        expect(willThrow).toThrow(Error);
+        expect(willThrow).toThrow(
+          '"$like", "$anyOf", "$nanyOf" are not supported by simplePredicateToJsExpression()'
+        );
+      });
+      it("Should throw error if used with $anyOf", () => {
+        const predicate = {
+          operator: "$anyOf",
+          value: 3,
+          subjectId: "parameter",
+        } as TPredicateProperties;
+
+        const willThrow = () => {
+          simplePredicateToJsExpression(predicate, "integer");
+        };
+        expect(willThrow).toThrow(Error);
+        expect(willThrow).toThrow(
+          '"$like", "$anyOf", "$nanyOf" are not supported by simplePredicateToJsExpression()'
+        );
+      });
+      it("Should throw error if used with $nanyOf", () => {
+        const predicate = {
+          operator: "$nanyOf",
+          value: 3,
+          subjectId: "parameter",
+        } as TPredicateProperties;
+
+        const willThrow = () => {
+          simplePredicateToJsExpression(predicate, "integer");
+        };
+        expect(willThrow).toThrow(Error);
+        expect(willThrow).toThrow(
+          '"$like", "$anyOf", "$nanyOf" are not supported by simplePredicateToJsExpression()'
+        );
+      });
+    }); // describe('$like',
   }); //describe('Simple operators'
 }); // describe('matcher-functions
 

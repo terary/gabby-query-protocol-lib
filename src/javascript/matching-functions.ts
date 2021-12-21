@@ -55,7 +55,9 @@ export const simplePredicateToJsExpression = (
   datatype: TSupportedDatatype
 ) => {
   if (["$like", "$anyOf", "$nanyOf"].includes(predicate.operator)) {
-    return "";
+    throw new Error(
+      '"$like", "$anyOf", "$nanyOf" are not supported by simplePredicateToJsExpression()'
+    );
   }
   const quoteEnclosedValue =
     datatype === "datetime" || datatype === "string"

@@ -19,7 +19,8 @@ const nl = (usePrettyPrint: boolean) => {
   if (!usePrettyPrint) {
     return "";
   }
-  // coverage complains although both options are tested
+
+  /* istanbul ignore next */
   return usePrettyPrint ? "\n" : " ";
 };
 
